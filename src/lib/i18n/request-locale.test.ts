@@ -20,4 +20,14 @@ describe("resolveRequestLocale", () => {
     assert.equal(resolveRequestLocale(accept), "en");
     assert.equal(resolveRequestLocale(new Request("http://localhost/api/send")), "fr");
   });
+
+  it("ignore un cookie NEXT_LOCALE mal échappé sans lever d'exception", () => {
+    const request = new Request("http://localhost/api/send", {
+      headers: {
+        cookie: "theme=dark; NEXT_LOCALE=%E0%A4%A",
+        "accept-language": "en-GB,en;q=0.8",
+      },
+    });
+    assert.equal(resolveRequestLocale(request), "en");
+  });
 });

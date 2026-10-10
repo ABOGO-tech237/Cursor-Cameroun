@@ -110,6 +110,23 @@ export default async function PrivacyPage() {
         </section>
       </FadeIn>
 
+      <FadeIn delay={0.22}>
+        <section className="rounded-xl border border-border bg-surface-1 p-6 md:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-text">
+            {t("privacy.partnersTitle")}
+          </h2>
+          <p className="mt-3 leading-7 text-text-2">{t("privacy.partnersBody")}</p>
+          <p className="mt-6">
+            <Link
+              href="/partners"
+              className="text-sm font-medium text-text underline decoration-border hover:decoration-text"
+            >
+              {t("privacy.backToPartners")}
+            </Link>
+          </p>
+        </section>
+      </FadeIn>
+
       <FadeIn delay={0.25}>
         <section className="rounded-xl border border-border bg-surface-1 p-6 md:p-8">
           <h2 className="text-xl font-semibold tracking-tight text-text">
