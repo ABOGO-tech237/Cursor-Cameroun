@@ -1,57 +1,122 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { LOCALE_HEADER } from "@/lib/i18n/request-locale";
+import { createContactSchema, type ContactFormValues } from "@/lib/schemas/contact";
+import { HONEYPOT_FIELD, TURNSTILE_TOKEN_FIELD } from "@/lib/security/fields";
+import {
+  InvisibleTurnstile,
+  isTurnstileSiteKeyConfigured,
+  type InvisibleTurnstileHandle,
+} from "@/components/InvisibleTurnstile";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+const ERROR_CODES = new Set([
+  "invalid",
+  "rateLimited",
+  "turnstile",
+  "unavailable",
+  "sendFailed",
+]);
 
-type ContactFormData = z.infer<typeof contactSchema>;
+function fieldClass(invalid: boolean) {
+  return [
+    "rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus-visible:ring-2",
+    invalid ? "border-text ring-text/20" : "border-border focus-visible:ring-ring/20",
+  ].join(" ");
+}
 
 export function ContactForm() {
   const t = useTranslations();
+  const tErrors = useTranslations("contact.errors");
+  const locale = useLocale();
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const turnstileRef = useRef<InvisibleTurnstileHandle>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const schema = useMemo(
+    () => createContactSchema((key) => tErrors(key)),
+    [tErrors],
+  );
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+      consent: false,
+    },
   });
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     setError(null);
 
     try {
+      let turnstileToken = "";
+      if (isTurnstileSiteKeyConfigured()) {
+        try {
+          turnstileToken = (await turnstileRef.current?.execute()) ?? "";
+        } catch {
+          setError(tErrors("turnstile"));
+          return;
+        }
+        if (!turnstileToken) {
+          setError(tErrors("turnstile"));
+          return;
+        }
+      }
+
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          [LOCALE_HEADER]: locale,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          [HONEYPOT_FIELD]: honeypotRef.current?.value ?? "",
+          [TURNSTILE_TOKEN_FIELD]: turnstileToken,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        const payload = (await response.json().catch(() => null)) as {
+          code?: string;
+          error?: string;
+          fieldErrors?: Record<string, string>;
+        } | null;
+        const fieldMessage = payload?.fieldErrors
+          ? Object.values(payload.fieldErrors).find((value) => typeof value === "string")
+          : undefined;
+        if (fieldMessage) {
+          setError(fieldMessage);
+        } else if (payload?.code && ERROR_CODES.has(payload.code)) {
+          setError(tErrors(payload.code as "invalid"));
+        } else {
+          setError(t("contact.errorBody"));
+        }
+        return;
       }
 
       setIsSuccess(true);
       reset();
-    } catch (err) {
+      if (honeypotRef.current) honeypotRef.current.value = "";
+    } catch {
       setError(t("contact.errorBody"));
     } finally {
       setIsSubmitting(false);
@@ -73,6 +138,7 @@ export function ContactForm() {
         </h3>
         <p className="mt-2 text-text-2">{t("contact.successBody")}</p>
         <button
+          type="button"
           onClick={() => setIsSuccess(false)}
           className="mt-8 rounded-md bg-text px-6 py-2 text-sm font-medium text-bg hover:opacity-90"
         >
@@ -85,11 +151,26 @@ export function ContactForm() {
   return (
     <div className="rounded-xl border border-border bg-surface-1 p-1 md:p-2">
       <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-5 p-6 md:p-8"
+        noValidate
+        onSubmit={(event) => {
+          void handleSubmit(onSubmit)(event);
+        }}
+        className="relative flex flex-col gap-5 p-6 md:p-8"
       >
+        <div className="pointer-events-none absolute h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label htmlFor={HONEYPOT_FIELD}>HP</label>
+          <input
+            ref={honeypotRef}
+            id={HONEYPOT_FIELD}
+            name={HONEYPOT_FIELD}
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </div>
+
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {/* Name */}
           <div className="flex flex-col gap-2">
             <label htmlFor="name" className="text-sm font-medium text-text-2">
               {t("contact.formName")}
@@ -97,16 +178,16 @@ export function ContactForm() {
             <input
               {...register("name")}
               id="name"
-              className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-                errors.name ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
-              }`}
+              autoComplete="name"
+              aria-invalid={errors.name ? true : undefined}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              className={fieldClass(Boolean(errors.name))}
             />
             {errors.name && (
-              <span className="text-xs text-text-2">{errors.name.message}</span>
+              <span id="name-error" className="text-xs text-text-2">{errors.name.message}</span>
             )}
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-sm font-medium text-text-2">
               {t("contact.formEmail")}
@@ -115,17 +196,17 @@ export function ContactForm() {
               {...register("email")}
               id="email"
               type="email"
-              className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-                errors.email ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
-              }`}
+              autoComplete="email"
+              aria-invalid={errors.email ? true : undefined}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={fieldClass(Boolean(errors.email))}
             />
             {errors.email && (
-              <span className="text-xs text-text-2">{errors.email.message}</span>
+              <span id="email-error" className="text-xs text-text-2">{errors.email.message}</span>
             )}
           </div>
         </div>
 
-        {/* Subject */}
         <div className="flex flex-col gap-2">
           <label htmlFor="subject" className="text-sm font-medium text-text-2">
             {t("contact.formSubject")}
@@ -133,16 +214,16 @@ export function ContactForm() {
           <input
             {...register("subject")}
             id="subject"
-            className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-              errors.subject ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
-            }`}
+            autoComplete="off"
+            aria-invalid={errors.subject ? true : undefined}
+            aria-describedby={errors.subject ? "subject-error" : undefined}
+            className={fieldClass(Boolean(errors.subject))}
           />
           {errors.subject && (
-            <span className="text-xs text-text-2">{errors.subject.message}</span>
+            <span id="subject-error" className="text-xs text-text-2">{errors.subject.message}</span>
           )}
         </div>
 
-        {/* Message */}
         <div className="flex flex-col gap-2">
           <label htmlFor="message" className="text-sm font-medium text-text-2">
             {t("contact.formMessage")}
@@ -151,14 +232,43 @@ export function ContactForm() {
             {...register("message")}
             id="message"
             rows={5}
-            className={`resize-none rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-              errors.message ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
-            }`}
+            aria-invalid={errors.message ? true : undefined}
+            aria-describedby={errors.message ? "message-error" : undefined}
+            className={`resize-none ${fieldClass(Boolean(errors.message))}`}
           />
           {errors.message && (
-            <span className="text-xs text-text-2">{errors.message.message}</span>
+            <span id="message-error" className="text-xs text-text-2">{errors.message.message}</span>
           )}
         </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex items-start gap-3">
+            <input
+              {...register("consent")}
+              id="consent"
+              type="checkbox"
+              aria-invalid={errors.consent ? true : undefined}
+              aria-describedby={errors.consent ? "consent-error" : undefined}
+              className="mt-1 h-4 w-4 shrink-0 accent-text"
+            />
+            <div className="text-sm leading-6 text-text-2">
+              <label htmlFor="consent" className="cursor-pointer">
+                {t("contact.consentLead")}
+              </label>{" "}
+              <Link
+                href="/privacy"
+                className="font-medium text-text underline decoration-border hover:decoration-text"
+              >
+                {t("contact.privacyLink")}
+              </Link>
+            </div>
+          </div>
+          {errors.consent && (
+            <span id="consent-error" className="text-xs text-text-2">{errors.consent.message}</span>
+          )}
+        </div>
+
+        <InvisibleTurnstile ref={turnstileRef} />
 
         <AnimatePresence>
           {error && (
@@ -167,8 +277,9 @@ export function ContactForm() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="flex items-center gap-2 rounded-md border border-border bg-surface-2 px-3 py-2 text-sm text-text"
+              role="alert"
             >
-              <AlertCircle size={16} />
+              <AlertCircle size={16} aria-hidden="true" />
               {error}
             </motion.div>
           )}
@@ -181,12 +292,12 @@ export function ContactForm() {
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
               {t("contact.formSending")}
             </>
           ) : (
             <>
-              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
               {t("contact.formSubmit")}
             </>
           )}

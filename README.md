@@ -105,19 +105,34 @@ npm run dev      # Serveur de développement (hot reload)
 npm run build    # Build de production
 npm run start    # Lancer le build de production
 npm run lint     # Vérification du code (ESLint)
+npm test         # Tests unitaires (schéma, échappement, débit, envoi)
 ```
 
 ---
 
 ## Variables d'environnement
 
-Copier `.env.example` en `.env` et renseigner les valeurs :
+Copier `.env.example` en `.env`. Le fichier `.env` ne se commite pas. `.env.example` ne contient aucune valeur réelle.
 
 | Variable | Description |
 | --- | --- |
-| `ADMIN_PASSWORD` | Mot de passe du tableau de bord admin |
-| `RESEND_API_KEY` | Clé API [Resend](https://resend.com) pour les emails |
-| `NEXT_PUBLIC_BASE_URL` | URL de base du site en production |
+| `RESEND_API_KEY` | Clé API [Resend](https://resend.com). Vide : l'envoi est simulé **uniquement** avec `npm run dev`. En production, l'absence de clé répond `503`. |
+| `RESEND_FROM` | Expéditeur vérifié chez Resend, par exemple `Cursor Cameroun <contact@example.com>`. Obligatoire dès qu'une clé est définie. Remplace l'ancien expéditeur codé en dur. |
+| `CONTACT_EMAIL` | Destinataire des messages du formulaire. Le `replyTo` reste l'adresse de la personne qui écrit. |
+| `NEXT_PUBLIC_SITE_URL` | URL publique du site, utilisée par le sitemap et `robots.txt`. |
+| `AUTH_SECRET` | Secret de signature des sessions admin (`src/lib/auth.ts`). |
+| `ADMIN_PASSWORD` | Mot de passe du tableau de bord. Sert aussi de repli si `AUTH_SECRET` est vide. |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Clé site Cloudflare Turnstile (widget **Invisible**). |
+| `TURNSTILE_SECRET_KEY` | Secret serveur Turnstile. La vérification n'est active que si **les deux** clés sont définies. Une seule des deux est une erreur de configuration (`503`). |
+| `DATABASE_URL` | Postgres des événements. Le formulaire de contact ne s'en sert pas, mais le client est importé au démarrage : sans cette variable, `next build` s'arrête. |
+
+### Formulaire de contact
+
+`POST /api/send` valide les champs avec le schéma Zod partagé (`src/lib/schemas/contact.ts`), échappe le HTML du mail, et applique une garde réutilisable (`src/lib/security/form-guard.ts`) : honeypot, limite de débit, Turnstile.
+
+La limite est de **5 envois / 10 minutes / adresse IP / instance**, en mémoire. En serverless (Vercel), chaque instance a son propre compteur : la limite repart à zéro au cold start et n'est pas globale. Le proxy (`src/proxy.ts`) exclut `/api` et ne porte pas ce compteur. Un store partagé (Postgres) serait nécessaire pour une limite ferme entre instances.
+
+Le widget Turnstile doit être créé en mode Invisible dans Cloudflare. La page `/privacy` renvoie vers l'addendum Turnstile, exigé pour ce mode. Elle contient des mentions **À confirmer** (responsable du traitement, durée de conservation, contact pour la suppression) à valider avant mise en production.
 
 ---
 
@@ -129,7 +144,7 @@ cursor-cameroun/
 │   ├── app/              # Routes App Router (layouts, pages, API)
 │   ├── components/       # Composants réutilisables
 │   ├── data/             # Données statiques (events, links…)
-│   └── lib/              # Utilitaires et helpers
+│   └── lib/              # Schémas, e-mail, garde anti-spam, auth
 ├── messages/             # Traductions FR / EN
 ├── public/               # Assets statiques (images, brand, gallery)
 ├── scripts/              # Scripts utilitaires

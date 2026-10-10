@@ -82,6 +82,7 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-6">
             <span>{t("footer.line")}</span>
+            <Link href="/privacy" className="hover:text-text transition-colors">{t("footer.privacy")}</Link>
             <Link href="/login" className="opacity-50 hover:opacity-100 transition-opacity">{t("footer.admin")}</Link>
           </div>
         </div>

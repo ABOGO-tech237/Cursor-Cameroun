@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/roadmap`, lastModified: new Date() },
     { url: `${baseUrl}/community`, lastModified: new Date() },
     { url: `${baseUrl}/contact`, lastModified: new Date() },
+    { url: `${baseUrl}/privacy`, lastModified: new Date() },
+    { url: `${baseUrl}/en/privacy`, lastModified: new Date() },
   ];
 }
 

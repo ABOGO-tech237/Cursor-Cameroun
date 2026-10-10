@@ -12,7 +12,8 @@
     "writeUs": "Nous écrire",
     "rights": "Tous droits réservés.",
     "line": "Noir · Blanc · Gris — Charte Graphique Officielle",
-    "admin": "ALD"
+    "admin": "ALD",
+    "privacy": "Confidentialité"
   },
   "nav": {
     "home": "Accueil",
@@ -157,7 +158,51 @@
     "channelLocation": "Localisation",
     "whatsappHint": "Rejoignez notre communauté",
     "locationHint": "Douala & Yaoundé, Cameroun",
-    "sendAnother": "Envoyer un autre message"
+    "sendAnother": "Envoyer un autre message",
+    "consentLead": "J'accepte que les informations de ce message soient utilisées pour y répondre.",
+    "privacyLink": "Politique de confidentialité",
+    "errors": {
+      "nameMin": "Le nom doit contenir au moins 2 caractères.",
+      "nameMax": "Le nom ne peut pas dépasser 80 caractères.",
+      "email": "Adresse e-mail invalide.",
+      "emailMax": "L'adresse e-mail ne peut pas dépasser 254 caractères.",
+      "subjectMin": "L'objet doit contenir au moins 5 caractères.",
+      "subjectMax": "L'objet ne peut pas dépasser 120 caractères.",
+      "messageMin": "Le message doit contenir au moins 10 caractères.",
+      "messageMax": "Le message ne peut pas dépasser 5000 caractères.",
+      "consent": "Cochez la case pour accepter le traitement décrit dans la politique de confidentialité.",
+      "invalid": "Le formulaire est incomplet ou invalide.",
+      "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+      "turnstile": "La vérification anti-spam a échoué. Réessayez.",
+      "unavailable": "L'envoi est temporairement indisponible.",
+      "sendFailed": "Le message n'a pas pu être envoyé. Réessayez."
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "description": "Qui traite les données du formulaire de contact, dans quel but, combien de temps, et comment en demander la suppression.",
+    "pendingBanner": "Les mentions « À confirmer » ne sont pas encore validées. Aucun responsable, aucune durée et aucun contact juridique ne sont inventés sur cette page.",
+    "pendingLabel": "À confirmer",
+    "intro": "Cette page décrit le traitement des données envoyées par le formulaire de contact du site Cursor Cameroun. Elle est rédigée au regard de la loi n° 2024/017 du 23 décembre 2024 relative à la protection des données à caractère personnel au Cameroun.",
+    "disclaimer": "Ce texte informe les personnes qui écrivent via le formulaire. Ce n'est pas un avis juridique.",
+    "lawLink": "Texte officiel (Présidence de la République)",
+    "controllerTitle": "Qui traite les données",
+    "controllerBody": "Le responsable du traitement est la personne ou l'organisation qui décide pourquoi et comment les messages sont utilisés. Cette identité n'est pas encore arrêtée pour ce site.",
+    "controllerPending": "Identité du responsable du traitement : nom, forme et adresse. À faire confirmer avant publication.",
+    "purposeTitle": "Dans quel but",
+    "purposeBody": "Le nom, l'adresse e-mail, l'objet et le message servent à lire la demande et à y répondre. La case de consentement enregistre que la personne accepte cet usage pour ce message. Ces informations ne sont pas présentées ici comme servant à de la prospection.",
+    "dataTitle": "Quelles données",
+    "dataBody": "Le formulaire transmet le nom, l'adresse e-mail, l'objet, le message et le choix de consentement. Lorsque l'envoi réel est actif, le message est transmis par e-mail au destinataire configuré pour le site, via le prestataire Resend. Le site ne copie pas ces messages dans sa base de données.",
+    "technicalTitle": "Mesures anti-spam",
+    "technicalBody": "Une limite de débit utilise l'adresse IP le temps du traitement, dans la mémoire du serveur qui reçoit l'envoi. Cette adresse n'est pas enregistrée dans la base du site. Si Cloudflare Turnstile est activé, un contrôle invisible s'exécute à l'envoi et un jeton technique est vérifié auprès de Cloudflare. Le mode invisible de Turnstile suppose de renvoyer vers l'addendum de confidentialité de Cloudflare, ci-dessous. Sans les deux clés Turnstile, ce contrôle n'a pas lieu.",
+    "turnstileLink": "Addendum de confidentialité Turnstile (Cloudflare)",
+    "retentionTitle": "Combien de temps",
+    "retentionBody": "La durée de conservation des messages, une fois reçus dans la boîte du destinataire ou chez le prestataire d'e-mail, n'est pas fixée sur cette page.",
+    "retentionPending": "Durée de conservation. Aucun délai chiffré n'est indiqué tant qu'il n'a pas été validé.",
+    "rightsTitle": "Demander la suppression",
+    "rightsBody": "Vous pouvez demander l'accès aux données issues de votre message, leur rectification ou leur suppression, et revenir sur le consentement donné via le formulaire. La loi n° 2024/017 du 23 décembre 2024 encadre la protection de ces données. Le canal pour adresser une demande n'est pas encore publié.",
+    "rightsPending": "Contact pour demander la suppression ou exercer vos droits. À faire confirmer. Aucune adresse juridique n'est indiquée ici en attendant.",
+    "backToContact": "Retour au formulaire de contact"
   }
 }
 
