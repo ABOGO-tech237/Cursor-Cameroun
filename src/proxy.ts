@@ -27,6 +27,22 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
+  // next-intl réécrit `/partners` vers `/fr/partners`, puis ce proxy est
+  // rappelé. Sur ce second passage il renvoie le préfixe de la locale par
+  // défaut vers l'URL sans préfixe, et la requête boucle. Le premier passage
+  // a déjà posé l'en-tête de locale : on rend ce chemin interne tel quel.
+  // Une visite directe de `/fr/...` n'a pas cet en-tête et reste redirigée
+  // vers l'URL canonique sans préfixe.
+  const internalFrenchRewrite =
+    (pathname === "/fr" || pathname.startsWith("/fr/")) &&
+    request.headers.get("x-next-intl-locale") === defaultLocale;
+
+  if (internalFrenchRewrite) {
+    return NextResponse.next({
+      request: { headers: request.headers },
+    });
+  }
+
   return intlMiddleware(request);
 }
 
