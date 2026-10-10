@@ -12,7 +12,8 @@
     "writeUs": "Write to us",
     "rights": "All rights reserved.",
     "line": "Black · White · Gray — Official Brand Guidelines",
-    "admin": "ALD"
+    "admin": "ALD",
+    "privacy": "Privacy"
   },
   "nav": {
     "home": "Home",
@@ -157,7 +158,51 @@
     "channelLocation": "Location",
     "whatsappHint": "Join our community",
     "locationHint": "Douala & Yaounde, Cameroon",
-    "sendAnother": "Send another message"
+    "sendAnother": "Send another message",
+    "consentLead": "I agree that the information in this message may be used to reply to it.",
+    "privacyLink": "Privacy policy",
+    "errors": {
+      "nameMin": "Name must be at least 2 characters.",
+      "nameMax": "Name cannot exceed 80 characters.",
+      "email": "Invalid email address.",
+      "emailMax": "Email address cannot exceed 254 characters.",
+      "subjectMin": "Subject must be at least 5 characters.",
+      "subjectMax": "Subject cannot exceed 120 characters.",
+      "messageMin": "Message must be at least 10 characters.",
+      "messageMax": "Message cannot exceed 5000 characters.",
+      "consent": "Tick the box to accept the processing described in the privacy policy.",
+      "invalid": "The form is incomplete or invalid.",
+      "rateLimited": "Too many attempts. Please try again in a few minutes.",
+      "turnstile": "The anti-spam check failed. Please try again.",
+      "unavailable": "Sending is temporarily unavailable.",
+      "sendFailed": "The message could not be sent. Please try again."
+    }
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "description": "Who processes contact-form data, for what purpose, for how long, and how to ask for deletion.",
+    "pendingBanner": "Items marked “To confirm” are not validated yet. This page does not invent a controller, a retention period, or a legal contact.",
+    "pendingLabel": "To confirm",
+    "intro": "This page describes how data sent through the Cursor Cameroun contact form is processed. It is written with Cameroonian Law No. 2024/017 of 23 December 2024 relating to personal data protection in mind.",
+    "disclaimer": "This text informs people who write through the form. It is not legal advice.",
+    "lawLink": "Official text (Presidency of the Republic)",
+    "controllerTitle": "Who processes the data",
+    "controllerBody": "The controller is the person or organisation that decides why and how messages are used. That identity is not settled for this site yet.",
+    "controllerPending": "Identity of the controller: name, legal form, and address. To be confirmed before publication.",
+    "purposeTitle": "For what purpose",
+    "purposeBody": "The name, email address, subject, and message are used to read the request and reply to it. The consent box records that the person accepts this use for this message. The information is not presented here as being used for prospecting.",
+    "dataTitle": "Which data",
+    "dataBody": "The form sends the name, email address, subject, message, and consent choice. When real delivery is enabled, the message is emailed to the recipient configured for the site, through the provider Resend. The site does not copy these messages into its database.",
+    "technicalTitle": "Anti-spam measures",
+    "technicalBody": "A rate limit uses the IP address for the duration of the request, in the memory of the server that receives it. That address is not stored in the site database. If Cloudflare Turnstile is enabled, an invisible check runs on submit and a technical token is verified with Cloudflare. Invisible Turnstile requires a link to Cloudflare’s privacy addendum, below. Without both Turnstile keys, this check does not run.",
+    "turnstileLink": "Turnstile privacy addendum (Cloudflare)",
+    "retentionTitle": "How long",
+    "retentionBody": "How long messages are kept, once they reach the recipient’s mailbox or the email provider, is not set on this page.",
+    "retentionPending": "Retention period. No numeric duration is shown until it has been validated.",
+    "rightsTitle": "Asking for deletion",
+    "rightsBody": "You can ask for access to the data from your message, for correction or deletion, and you can withdraw the consent given through the form. Law No. 2024/017 of 23 December 2024 frames the protection of this data. The channel for sending a request is not published yet.",
+    "rightsPending": "Contact for a deletion request or to exercise your rights. To be confirmed. No legal address is listed here in the meantime.",
+    "backToContact": "Back to the contact form"
   }
 }
 

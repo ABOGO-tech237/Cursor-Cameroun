@@ -50,6 +50,11 @@ a {
   text-underline-offset: 3px;
 }
 
+/* Cases à cocher dans la charte : noir ou blanc selon le thème, jamais une couleur d'accent. */
+input[type="checkbox"] {
+  accent-color: var(--cursor-text);
+}
+
 /* Accessibilité : focus visible, monochrome */
 :where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
   outline: 2px solid var(--cursor-ring);

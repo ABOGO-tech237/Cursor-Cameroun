@@ -48,7 +48,7 @@ export default function LoginPage() {
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-text">Administration</h1>
             <p className="mt-2 text-sm text-text-2">
-              Veuillez entrer le mot de passe pour accéder à l'espace admin.
+              Veuillez entrer le mot de passe pour accéder à l’espace admin.
             </p>
           </div>
 

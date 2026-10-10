@@ -31,5 +31,7 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // `/api` est exclu : la limite de débit et Turnstile vivent dans les routes.
+  // Le proxy ne partage pas leur mémoire, et ne doit pas porter cet état.
   matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
