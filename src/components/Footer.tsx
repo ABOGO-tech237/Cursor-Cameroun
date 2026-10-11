@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { BrandLockup } from "@/components/BrandLockup";
 import { LINKS } from "@/data/links";
 import { Code, MessageCircle, MapPin, Mail, Globe } from "lucide-react";
 
@@ -14,21 +14,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Brand & Mission */}
           <div className="flex flex-col gap-6 md:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/brand/LOCKUP_HORIZONTAL_2D_LIGHT.svg"
-                alt="Cursor"
-                width={120}
-                height={28}
-                className="brand-logo-light"
-              />
-              <Image
-                src="/brand/LOCKUP_HORIZONTAL_2D_DARK.svg"
-                alt="Cursor"
-                width={120}
-                height={28}
-                className="brand-logo-dark"
-              />
+            <Link href="/" aria-label={t("meta.siteName")} className="inline-flex">
+              <BrandLockup height={22} />
             </Link>
             <p className="max-w-md text-sm leading-relaxed text-text-2">
               {t("footer.description")}
@@ -48,10 +35,11 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <h3 className="text-sm font-bold uppercase tracking-widest text-text">{t("footer.community")}</h3>
             <nav className="flex flex-col gap-3">
-              <Link href="/events" className="text-sm text-text-2 hover:text-text transition-colors">Événements</Link>
-              <Link href="/gallery" className="text-sm text-text-2 hover:text-text transition-colors">Galerie</Link>
-              <Link href="/roadmap" className="text-sm text-text-2 hover:text-text transition-colors">Roadmap</Link>
-              <Link href="/community" className="text-sm text-text-2 hover:text-text transition-colors">Projets</Link>
+              <Link href="/learn" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.learn")}</Link>
+              <Link href="/events" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.events")}</Link>
+              <Link href="/gallery" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.gallery")}</Link>
+              <Link href="/roadmap" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.roadmap")}</Link>
+              <Link href="/community" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.community")}</Link>
             </nav>
           </div>
 

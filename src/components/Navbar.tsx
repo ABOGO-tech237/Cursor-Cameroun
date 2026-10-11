@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState, useSyncExternalStore } from "react";
-import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { locales, type Locale } from "@/i18n/routing";
+import { BrandLockup } from "@/components/BrandLockup";
 import { useTheme } from "@/components/ThemeProvider";
 import { LINKS } from "@/data/links";
 import { Sun, Moon, LogOut, ShieldCheck } from "lucide-react";
@@ -81,6 +81,7 @@ export function Navbar() {
     () => {
       const baseItems = [
         { href: "/", label: t("nav.home") },
+        { href: "/learn", label: t("nav.learn") },
         { href: "/events", label: t("nav.events") },
         { href: "/gallery", label: t("nav.gallery") },
         { href: "/roadmap", label: t("nav.roadmap") },
@@ -102,25 +103,10 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-4 py-3">
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium tracking-tight text-text hover:bg-surface-2"
+          aria-label={t("meta.siteName")}
+          className="flex items-center rounded-md px-2 py-1 hover:bg-surface-2"
         >
-          {/* Logo officiel Cursor — version light sur fond clair, dark sur fond sombre */}
-          <Image
-            src="/brand/APP_ICON_2D_LIGHT.png"
-            alt="Cursor"
-            width={20}
-            height={20}
-            className="brand-logo-light shrink-0"
-          />
-          <Image
-            src="/brand/APP_ICON_2D_DARK.png"
-            alt=""
-            aria-hidden="true"
-            width={20}
-            height={20}
-            className="brand-logo-dark shrink-0"
-          />
-          Cursor Cameroun
+          <BrandLockup height={18} />
         </Link>
 
         {/* Navigation desktop */}

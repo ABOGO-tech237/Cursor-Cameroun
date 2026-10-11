@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { BrandLockup } from "@/components/BrandLockup";
 import { CameroonMap } from "@/components/CameroonMap";
 import { LINKS } from "@/data/links";
 import { getPastEvents, getUpcomingEvents } from "@/data/events";
 import { CITY_POINTS } from "@/data/roadmap";
-import { FadeIn } from "@/components/FadeIn";
 
 function formatEventDateRange(startDateISO: string, endDateISO: string) {
   return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
@@ -38,13 +38,13 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-16">
-      {/* Hero */}
-      <FadeIn>
-        <section className="rounded-xl border border-border bg-bg-2 p-8 md:p-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <section className="brand-field motion-rise rounded-xl border border-border bg-bg-2 p-8 md:p-12">
+          <div className="relative z-[1] flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm font-medium text-text-2">{t("meta.tagline")}</p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text md:text-5xl">
+              <BrandLockup variant="25d" height={40} priority />
+              <p className="mt-6 text-sm font-medium text-text-2">{t("meta.tagline")}</p>
+              <span className="motion-rule mt-4 block h-px w-16 bg-text" />
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-text md:text-5xl">
                 {t("home.heroTitle")}
               </h1>
               <p className="mt-4 text-lg leading-8 text-text-2">
@@ -62,7 +62,7 @@ export default async function Home() {
             </a>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="relative z-[1] mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="rounded-lg border border-border bg-surface-1 p-5">
               <div className="text-2xl font-semibold text-text">
                 <AnimatedNumber value={members} />
@@ -83,17 +83,20 @@ export default async function Home() {
             </div>
           </div>
         </section>
-      </FadeIn>
 
-      {/* About */}
-      <FadeIn delay={0.2}>
-        <section className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-10">
+      <section className="motion-rise grid grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-10" style={{ animationDelay: "80ms" }}>
           <div className="rounded-lg border border-border bg-surface-1 p-8">
             <h2 className="text-xl font-semibold tracking-tight text-text">
               {t("home.sectionAboutTitle")}
             </h2>
             <p className="mt-3 leading-7 text-text-2">{t("home.sectionAboutBody")}</p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Link
+                href="/learn"
+                className="inline-flex items-center justify-center rounded-md bg-text px-4 py-2 text-sm font-medium text-bg hover:opacity-90"
+              >
+                {t("nav.learn")}
+              </Link>
               <Link
                 href="/community"
                 className="inline-flex items-center justify-center rounded-md border border-border bg-surface-1 px-4 py-2 text-sm font-medium text-text hover:bg-surface-2"
@@ -105,11 +108,8 @@ export default async function Home() {
 
           <CameroonMap points={CITY_POINTS} />
         </section>
-      </FadeIn>
 
-      {/* Upcoming */}
-      <FadeIn delay={0.3}>
-        <section>
+      <section className="motion-rise" style={{ animationDelay: "140ms" }}>
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold tracking-tight text-text">
@@ -131,7 +131,7 @@ export default async function Home() {
             {upcoming.map((e) => (
               <div
                 key={e.slug}
-                className="rounded-lg border border-border bg-surface-1 p-6 transition-transform hover:scale-[1.02]"
+                className="rounded-lg border border-border bg-surface-1 p-6 hover:bg-surface-2"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-base font-semibold text-text">{e.name}</h3>
@@ -166,11 +166,8 @@ export default async function Home() {
             ))}
           </div>
         </section>
-      </FadeIn>
 
-      {/* Past highlights */}
-      <FadeIn delay={0.4}>
-        <section>
+      <section className="motion-rise" style={{ animationDelay: "200ms" }}>
           <h2 className="text-xl font-semibold tracking-tight text-text">
             {t("home.sectionPastHighlightsTitle")}
           </h2>
@@ -178,7 +175,7 @@ export default async function Home() {
             {past.map((e) => (
               <div
                 key={e.slug}
-                className="rounded-lg border border-border bg-surface-1 p-6 transition-transform hover:scale-[1.01]"
+                className="rounded-lg border border-border bg-surface-1 p-6 hover:bg-surface-2"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-base font-semibold text-text">{e.name}</h3>
@@ -203,11 +200,8 @@ export default async function Home() {
             ))}
           </div>
         </section>
-      </FadeIn>
 
-      {/* Closing CTA */}
-      <FadeIn delay={0.5}>
-        <section className="rounded-xl border border-border bg-bg-2 p-8 md:p-12">
+      <section className="motion-rise rounded-xl border border-border bg-bg-2 p-8 md:p-12" style={{ animationDelay: "240ms" }}>
           <h2 className="text-2xl font-semibold tracking-tight text-text">
             {t("home.closingCtaTitle")}
           </h2>
@@ -225,7 +219,6 @@ export default async function Home() {
             </a>
           </div>
         </section>
-      </FadeIn>
     </div>
   );
 }

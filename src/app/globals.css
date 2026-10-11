@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
+/*
+  Couleurs relevées dans les fichiers officiels de https://cursor.com/brand
+  (zip cursor-brand-assets), pas dans un nuancier écrit : la page n'en publie pas.
+  - #f7f7f4 : coin de APP_ICON_2D_LIGHT.png et APP_ICON_25D_LIGHT.png
+  - #14120b : coin de APP_ICON_2D_DARK.png et APP_ICON_25D_DARK.png
+  - #26251e : encre de LOCKUP_HORIZONTAL_2D_LIGHT.svg
+  - #edecec : encre de LOCKUP_HORIZONTAL_2D_DARK.svg
+  - #ffffff, #d6d5d2, #72716d, #55544f, #43413c : aplats de CUBE_25D.svg et des lockups 2.5D
+  Le rôle (fond, surface, texte secondaire) n'est pas spécifié par la page.
+*/
 :root {
-  --cursor-bg: #ffffff;
-  --cursor-bg-2: #f5f5f5;
+  --cursor-bg: #f7f7f4;
+  --cursor-bg-2: #edecec;
   --cursor-surface-1: #ffffff;
-  --cursor-surface-2: #f5f5f5;
-  --cursor-border: #e5e5e5;
-  --cursor-text: #000000;
-  --cursor-text-2: #555555;
-  --cursor-ring: #2a2a2a;
+  --cursor-surface-2: #edecec;
+  --cursor-border: #d6d5d2;
+  --cursor-text: #26251e;
+  --cursor-text-2: #55544f;
+  --cursor-ring: #26251e;
 }
 
 @theme inline {
@@ -22,23 +32,29 @@
   --color-ring: var(--cursor-ring);
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "Courier New", monospace;
+  /*
+    https://cursor.com/brand ne propose pas de fichier de police.
+    Cursor Gothic, Berkeley Mono et EB Garamond sont servis par cursor.com
+    et absents de l'archive « Download brand assets ». Ils ne sont pas copiés.
+  */
 }
 
 :root.dark {
-  --cursor-bg: #000000;
-  --cursor-bg-2: #0a0a0a;
-  --cursor-surface-1: #111111;
-  --cursor-surface-2: #1a1a1a;
-  --cursor-border: #2a2a2a;
-  --cursor-text: #ffffff;
-  --cursor-text-2: #a0a0a0;
-  --cursor-ring: #a0a0a0;
+  --cursor-bg: #14120b;
+  --cursor-bg-2: #26251e;
+  --cursor-surface-1: #26251e;
+  --cursor-surface-2: #43413c;
+  /* #72716d sur #26251e = 3.15:1 (WCAG). #55544f était à 2.03:1. */
+  --cursor-border: #72716d;
+  --cursor-text: #edecec;
+  --cursor-text-2: #d6d5d2;
+  --cursor-ring: #edecec;
 }
 
 body {
   background: var(--cursor-bg);
   color: var(--cursor-text);
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Base */
@@ -93,5 +109,81 @@ input[type="checkbox"] {
   100% {
     opacity: 0;
     transform: scale(1.35);
+  }
+}
+
+/*
+  Mouvement original (grille, filet, apparition).
+  Pas de vidéo, pas d'asset animé de cursor.com.
+*/
+.brand-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.brand-field::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--cursor-text) 14%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--cursor-text) 14%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.45;
+}
+
+.motion-rule {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-field::before {
+    animation: brand-grid-drift 36s linear infinite;
+  }
+
+  .motion-rise {
+    animation: motion-rise 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .motion-rule {
+    animation: motion-rule 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes brand-grid-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(32px, 32px, 0);
+  }
+}
+
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motion-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin {
+    animation: none;
   }
 }

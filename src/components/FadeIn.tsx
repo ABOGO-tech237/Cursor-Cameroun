@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface FadeInProps {
@@ -11,6 +11,11 @@ interface FadeInProps {
 }
 
 export function FadeIn({ children, delay = 0, direction = "up", className }: FadeInProps) {
+  const reduce = useReducedMotion();
+  if (reduce) {
+    return <div className={className}>{children}</div>;
+  }
+
   const directions = {
     up: { y: 20 },
     down: { y: -20 },
@@ -44,6 +49,11 @@ export function FadeIn({ children, delay = 0, direction = "up", className }: Fad
 }
 
 export function FadeInStagger({ children, className }: { children: ReactNode; className?: string }) {
+  const reduce = useReducedMotion();
+  if (reduce) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"

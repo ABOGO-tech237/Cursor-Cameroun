@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
+}
+
+function subscribeReducedMotion(callback: () => void) {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+  media.addEventListener("change", callback);
+  return () => media.removeEventListener("change", callback);
 }
 
 export function AnimatedNumber({
@@ -15,8 +21,15 @@ export function AnimatedNumber({
 }) {
   const [display, setDisplay] = useState(0);
   const target = useMemo(() => Math.max(0, Math.floor(value)), [value]);
+  const reduce = useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
 
   useEffect(() => {
+    if (reduce) return;
+
     let raf = 0;
     const start = performance.now();
     const from = display;
@@ -32,8 +45,8 @@ export function AnimatedNumber({
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, durationMs]);
+  }, [target, durationMs, reduce]);
 
-  return <span>{display.toLocaleString()}</span>;
+  return <span>{(reduce ? target : display).toLocaleString()}</span>;
 }
 

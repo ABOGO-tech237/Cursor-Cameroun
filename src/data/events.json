@@ -88,7 +88,7 @@
       {
         "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778319545/b1uw82ogezi5oovfzeou.png",
         "alt": "cursor-code",
-        "caption": "Brainstorm avec Cursor Code"
+        "caption": "Brainstorm avec Cursor"
       }
     ],
     "venue": "",
@@ -140,7 +140,7 @@
     "venue": "Maison du café",
     "lumaUrl": "",
     "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778318854/on1mcb5by8tr4wvbgxoj.jpg",
-    "about": "Le premier Café Cursor de Yaoundé a réuni des développeurs passionnés autour de Cursor AI. L'événement a été l'occasion de présenter les fonctionnalités clés de l'outil, d'échanger des astuces et de mettre en place les bases de la communauté camerounaise.",
+    "about": "Le premier Café Cursor de Yaoundé a réuni des développeurs passionnés autour de Cursor. L'événement a été l'occasion de présenter les fonctionnalités clés de l'outil, d'échanger des astuces et de mettre en place les bases de la communauté camerounaise.",
     "startTime": "09:00",
     "endTime": "17:00"
   },
@@ -156,7 +156,7 @@
     "participants": 100,
     "status": "upcoming",
     "lumaUrl": "https://lu.ma/cursor-cameroun-01",
-    "about": "Le Café Cursor s'invite à Douala ! Ce premier événement dans la capitale économique du Cameroun rassemblera des développeurs pour une session de découverte et de présentation de Cursor AI, dans une ambiance détendue et conviviale.",
+    "about": "Le Café Cursor s'invite à Douala ! Ce premier événement dans la capitale économique du Cameroun rassemblera des développeurs pour une session de découverte et de présentation de Cursor, dans une ambiance détendue et conviviale.",
     "startTime": "09:00",
     "endTime": "17:00",
     "gallery": [],
