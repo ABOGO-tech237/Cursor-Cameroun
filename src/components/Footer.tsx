@@ -41,7 +41,6 @@ export function Footer() {
               <Link href="/roadmap" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.roadmap")}</Link>
               <Link href="/community" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.community")}</Link>
               <Link href="/partners" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.partners")}</Link>
-              <Link href="/contact" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.contact")}</Link>
             </nav>
           </div>
 
