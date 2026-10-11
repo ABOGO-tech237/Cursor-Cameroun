@@ -7,7 +7,7 @@
   - #14120b : coin de APP_ICON_2D_DARK.png et APP_ICON_25D_DARK.png
   - #26251e : encre de LOCKUP_HORIZONTAL_2D_LIGHT.svg
   - #edecec : encre de LOCKUP_HORIZONTAL_2D_DARK.svg
-  - #ffffff, #d6d5d2, #55544f, #43413c : aplats de CUBE_25D.svg et des lockups 2.5D
+  - #ffffff, #d6d5d2, #72716d, #55544f, #43413c : aplats de CUBE_25D.svg et des lockups 2.5D
   Le rôle (fond, surface, texte secondaire) n'est pas spécifié par la page.
 */
 :root {
@@ -44,7 +44,8 @@
   --cursor-bg-2: #26251e;
   --cursor-surface-1: #26251e;
   --cursor-surface-2: #43413c;
-  --cursor-border: #55544f;
+  /* #72716d sur #26251e = 3.15:1 (WCAG). #55544f était à 2.03:1. */
+  --cursor-border: #72716d;
   --cursor-text: #edecec;
   --cursor-text-2: #d6d5d2;
   --cursor-ring: #edecec;
