@@ -11,12 +11,13 @@
     "location": "Cameroun · Yaoundé & Douala",
     "writeUs": "Nous écrire",
     "rights": "Tous droits réservés.",
-    "line": "Noir · Blanc · Gris — Charte Graphique Officielle",
+    "line": "Marque : fichiers officiels cursor.com/brand",
     "admin": "ALD",
     "privacy": "Confidentialité"
   },
   "nav": {
     "home": "Accueil",
+    "learn": "Apprendre",
     "events": "Événements",
     "gallery": "Galerie",
     "roadmap": "Roadmap",
@@ -176,6 +177,32 @@
       "turnstile": "La vérification anti-spam a échoué. Réessayez.",
       "unavailable": "L'envoi est temporairement indisponible.",
       "sendFailed": "Le message n'a pas pu être envoyé. Réessayez."
+    }
+  },
+  "learn": {
+    "kicker": "Parcours de la communauté",
+    "title": "Apprendre",
+    "description": "Parcours écrits par Cursor Cameroun pour rejoindre le cours Cursor, sans en reprendre les textes.",
+    "intro": "Quatre parcours rédigés ici, pour préparer un meetup ou une session solo. Chacun renvoie vers le cours Cursor. Les explications, les exemples et les vidéos restent sur leur site.",
+    "note": "Ces cartes ne reproduisent pas le cours. Elles décrivent la manière dont nous nous en servons au Cameroun.",
+    "openCourse": "Ouvrir le cours Cursor",
+    "paths": {
+      "model": {
+        "title": "Voir ce que le modèle a sous les yeux",
+        "body": "Avant une suggestion, on note ce qui est ouvert : le fichier, ses voisins, l'erreur affichée. Si ce contexte ne suffirait pas à un pair, il ne suffit pas au modèle. Le cours officiel explique le fonctionnement. Ici, on s'impose d'abord cette pause."
+      },
+      "diff": {
+        "title": "Une intention, un diff, une relecture",
+        "body": "On écrit l'intention en une phrase, on demande un changement borné, puis on lit le diff comme celui d'une autre personne. On garde ce qui est compris et on écarte le reste. Le rythme vient de nos cafés, pas d'un script du cours."
+      },
+      "recover": {
+        "title": "Trois sorties quand ça dérape",
+        "body": "Si la proposition s'éloigne, on rétrécit la demande, on montre un exemple déjà dans le dépôt, ou on s'arrête. Répéter la même phrase n'est pas un parcours. On choisit une de ces trois sorties, puis on revient au cours pour comprendre l'écart."
+      },
+      "cafe": {
+        "title": "Apporter une question au prochain café",
+        "body": "On choisit un extrait, on place à côté ce que l'outil a proposé, et on en discute à Yaoundé, à Douala ou en ligne. Le lien ouvre le cours Cursor. La conversation reste dans la communauté."
+      }
     }
   },
   "privacy": {

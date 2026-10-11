@@ -11,12 +11,13 @@
     "location": "Cameroon · Yaounde & Douala",
     "writeUs": "Write to us",
     "rights": "All rights reserved.",
-    "line": "Black · White · Gray — Official Brand Guidelines",
+    "line": "Brand: official files from cursor.com/brand",
     "admin": "ALD",
     "privacy": "Privacy"
   },
   "nav": {
     "home": "Home",
+    "learn": "Learn",
     "events": "Events",
     "gallery": "Gallery",
     "roadmap": "Roadmap",
@@ -176,6 +177,32 @@
       "turnstile": "The anti-spam check failed. Please try again.",
       "unavailable": "Sending is temporarily unavailable.",
       "sendFailed": "The message could not be sent. Please try again."
+    }
+  },
+  "learn": {
+    "kicker": "Community paths",
+    "title": "Learn",
+    "description": "Paths written by Cursor Cameroon that lead to the Cursor course, without reusing its wording.",
+    "intro": "Four paths written here, to prepare a meetup or a solo session. Each one leads to the Cursor course. The explanations, examples, and videos stay on their site.",
+    "note": "These cards do not reproduce the course. They describe how we use it in Cameroon.",
+    "openCourse": "Open the Cursor course",
+    "paths": {
+      "model": {
+        "title": "See what the model is looking at",
+        "body": "Before a suggestion, write down what is actually open: the file, its neighbors, the error on screen. If that context would not be enough for a teammate, it is not enough for the model. The official course explains how this works. This path is the pause we take first."
+      },
+      "diff": {
+        "title": "One intention, one diff, one review",
+        "body": "State the intention in a sentence, ask for a bounded change, then read the diff the way you would read someone else's. Keep what you understand and drop the rest. The pace comes from our cafés, not from a script in the course."
+      },
+      "recover": {
+        "title": "Three ways out when it drifts",
+        "body": "If the proposal wanders, narrow the ask, point at an example already in the repo, or stop. Repeating the same sentence is not a path. Pick one of those three, then return to the course to see why it diverged."
+      },
+      "cafe": {
+        "title": "Bring one question to the next café",
+        "body": "Pick a snippet, place the tool's proposal beside it, and talk it through in Yaoundé, Douala, or online. The link opens the Cursor course. The conversation stays with the community."
+      }
     }
   },
   "privacy": {
