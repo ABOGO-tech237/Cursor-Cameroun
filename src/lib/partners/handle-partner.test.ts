@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { createTranslator } from "use-intl/core";
 import { LINKS } from "@/data/links";
 import fr from "../../../messages/fr.json";
 import en from "../../../messages/en.json";
@@ -13,7 +14,12 @@ import {
   PARTNER_SECTORS,
 } from "../schemas/partner";
 import { handlePartnerPost, type PartnerHandlerDeps } from "./handle-partner";
-import { type PartnerMailCopy } from "./partner-email";
+import {
+  partnerMailCopy,
+  partnerMessages,
+  readPartnerMessage,
+  type PartnerMailCopy,
+} from "./partner-email";
 
 const valid = {
   organization: "Hub <b>Test</b>",
@@ -215,5 +221,26 @@ describe("copies FR et EN", () => {
     assert.match(en.partners.email.ackDelay, /days/);
     assert.notEqual(fr.partners.email.ackDelay, en.partners.email.ackDelay);
     assert.equal(JSON.stringify(fr.partners).includes("re_"), false);
+  });
+
+  it("remplit les gabarits lus tels quels, sans interpolation ICU", () => {
+    const translator = createTranslator({
+      locale: "fr",
+      messages: fr.partners,
+    });
+    const built = partnerMessages(
+      valid,
+      partnerMailCopy((key) => readPartnerMessage((rawKey) => translator.raw(rawKey), key)),
+      "fr",
+    );
+    assert.equal(built.teamSubject, "[Partenaires] Hub <b>Test</b>");
+    assert.equal(built.ackGreeting, "Bonjour Ada Lovelace,");
+    assert.match(built.ackBody, /Hub <b>Test<\/b>/);
+    assert.match(built.ackDelay, /cinq jours ouvrés/);
+    assert.equal(built.whatsappUrl, LINKS.whatsapp);
+
+    const english = createTranslator({ locale: "en", messages: en.partners });
+    assert.match(String(english.raw("email.ackGreeting")), /\{name\}/);
+    assert.match(String(english.raw("email.ackBody")), /\{organization\}/);
   });
 });

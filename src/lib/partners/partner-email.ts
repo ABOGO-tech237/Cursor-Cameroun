@@ -48,6 +48,19 @@ function fill(template: string, vars: Record<string, string>): string {
   return template.replace(/\{(\w+)\}/g, (_, key: string) => vars[key] ?? "");
 }
 
+/**
+ * Lit un message tel qu'il est écrit dans le catalogue.
+ * next-intl interprète `{organization}` comme une variable ICU et refuse
+ * l'appel sans valeur. Les gabarits sont remplis ensuite par `fill`.
+ */
+export function readPartnerMessage(readRaw: (key: string) => unknown, key: string): string {
+  const value = readRaw(key);
+  if (typeof value !== "string") {
+    throw new Error(`Message partenaire invalide : ${key}`);
+  }
+  return value;
+}
+
 /** Libellés déjà traduits (FR ou EN) pour les deux e-mails. */
 export function partnerMailCopy(t: (key: string) => string): PartnerMailCopy {
   const preferences = ["whatsapp", "call", "email"] as const;
