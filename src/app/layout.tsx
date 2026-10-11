@@ -1,14 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import {
-  getLocale,
-  getMessages,
-  getTimeZone,
-  setRequestLocale,
-} from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
-import Providers from "./providers";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -50,11 +42,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
-  setRequestLocale(locale);
-  const [messages, timeZone] = await Promise.all([
-    getMessages(),
-    getTimeZone(),
-  ]);
 
   return (
     <html
@@ -62,15 +49,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className="h-full antialiased dark"
     >
-      <body className="min-h-full flex flex-col bg-bg text-text">
-        <Providers locale={locale} messages={messages} timeZone={timeZone}>
-          <Navbar />
-          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12">
-            {children}
-          </main>
-          <Footer />
-        </Providers>
-      </body>
+      <body className="min-h-full flex flex-col bg-bg text-text">{children}</body>
     </html>
   );
 }

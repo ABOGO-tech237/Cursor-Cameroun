@@ -28,7 +28,9 @@
     "themeLight": "Clair",
     "language": "Langue",
     "menuOpen": "Ouvrir le menu",
-    "menuClose": "Fermer le menu"
+    "menuClose": "Fermer le menu",
+    "partners": "Partenaires",
+    "contact": "Contact"
   },
   "home": {
     "heroTitle": "Cursor Cameroun",
@@ -205,12 +207,177 @@
       }
     }
   },
+  "partners": {
+    "title": "Partenaires",
+    "description": "Salles, visibilité et autres soutiens pour les meetups Cursor Cameroun. Aucun logo n'est affiché sans autorisation.",
+    "introTitle": "Pourquoi devenir partenaire",
+    "introLead": "Un meetup a besoin d'une salle, d'un relais, et parfois d'un coup de main.",
+    "introBody": "Devenir partenaire, c'est ouvrir un lieu, faire connaître la communauté auprès de vos étudiants, de vos membres ou de vos équipes, ou proposer un autre soutien. Chaque accord se discute directement avec l'équipe. Le logo d'une organisation n'est publié qu'après son autorisation, en SVG ou en WebP de moins de 30 Ko.",
+    "directoryTitle": "Partenaires",
+    "directoryEmptyTitle": "La vitrine est encore vide",
+    "directoryEmptyBody": "Aucun partenaire n'est publié pour le moment. Nous n'affichons pas de logo fictif : un nom n'apparaît ici qu'une fois l'accord conclu, et un logo seulement si l'autorisation est donnée.",
+    "offersTitle": "Quatre façons de soutenir",
+    "offersIntro": "Plusieurs choix sont possibles. Indiquez dans le formulaire ce que vous pouvez proposer.",
+    "cardCta": "Indiquer cette offre dans le formulaire",
+    "formTitle": "Devenir partenaire",
+    "formIntro": "Décrivez votre organisation et ce que vous pouvez offrir. Le logo ne fait pas partie de ce formulaire : il n'est ajouté qu'après accord.",
+    "formSubmit": "Envoyer la proposition",
+    "formSending": "Envoi en cours…",
+    "successTitle": "Proposition bien reçue",
+    "successBody": "Merci. L'équipe a votre proposition. Quand l'envoi aboutit, un accusé de réception part aussi vers votre adresse e-mail, dans la langue de cette page.",
+    "successWhatsappLink": "Ouvrir WhatsApp",
+    "sendAnother": "Envoyer une autre proposition",
+    "errorBody": "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+    "whatsappHint": "L'indicatif +237 est prérempli. Remplacez-le si le numéro n'est pas camerounais.",
+    "countryHint": "Pays de résidence, pour la diaspora.",
+    "venueHint": "Précisions sur la salle",
+    "consentLead": "J'accepte que ces informations soient utilisées pour étudier cette proposition et y répondre.",
+    "privacyLink": "Politique de confidentialité",
+    "visit": "Voir le site",
+    "placeholders": {
+      "city": "Choisir une ville",
+      "sector": "Choisir un secteur",
+      "power": "Choisir"
+    },
+    "fields": {
+      "organization": "Organisation",
+      "contactName": "Nom du contact",
+      "whatsapp": "WhatsApp",
+      "preference": "Préférence de contact",
+      "email": "E-mail",
+      "city": "Ville",
+      "country": "Pays",
+      "link": "Page Facebook, LinkedIn ou site (facultatif)",
+      "sector": "Secteur",
+      "offers": "Offres",
+      "capacity": "Capacité (personnes)",
+      "wifi": "Wifi et débit",
+      "power": "Électricité de secours (groupe ou onduleur)",
+      "av": "Projecteur et sono",
+      "availability": "Disponibilités",
+      "details": "Précisions (facultatif)",
+      "locale": "Langue du formulaire"
+    },
+    "preferences": {
+      "whatsapp": "WhatsApp",
+      "call": "Appel",
+      "email": "E-mail"
+    },
+    "cities": {
+      "yaounde": "Yaoundé",
+      "douala": "Douala",
+      "bafoussam": "Bafoussam",
+      "buea": "Buea",
+      "bamenda": "Bamenda",
+      "limbe": "Limbé",
+      "kribi": "Kribi",
+      "garoua": "Garoua",
+      "maroua": "Maroua",
+      "ngaoundere": "Ngaoundéré",
+      "bertoua": "Bertoua",
+      "ebolowa": "Ebolowa",
+      "other": "Autre",
+      "diaspora": "Diaspora"
+    },
+    "sectors": {
+      "school": "École ou université",
+      "coworking": "Coworking ou hub",
+      "tech": "Entreprise tech",
+      "telecom": "Télécoms",
+      "finance": "Banque ou fintech",
+      "media": "Média ou influenceur",
+      "ngo": "ONG ou institution",
+      "startup": "Startup",
+      "international": "Sponsor international",
+      "other": "Autre"
+    },
+    "offerNames": {
+      "venue": "Salle",
+      "visibility": "Visibilité",
+      "catering": "Restauration",
+      "equipment": "Matériel",
+      "mentoring": "Mentoring",
+      "funding": "Financement",
+      "other": "Autre"
+    },
+    "powerOptions": {
+      "generator": "Groupe électrogène",
+      "ups": "Onduleur",
+      "both": "Groupe et onduleur",
+      "none": "Aucun"
+    },
+    "offers": {
+      "venue": {
+        "title": "Salle",
+        "body": "Accueillir un meetup, un café Cursor ou une nuit de code. Le formulaire demande alors la capacité, le wifi et son débit, l'électricité de secours, le projecteur, la sono et les disponibilités."
+      },
+      "visibility": {
+        "title": "Visibilité",
+        "body": "Relayer l'annonce auprès de vos étudiants, de vos membres ou de vos clients : école, média, réseau ou entreprise."
+      },
+      "support": {
+        "title": "Autre soutien",
+        "body": "Restauration, matériel, mentoring ou financement. Décrivez ce qui est possible dans les précisions."
+      },
+      "international": {
+        "title": "Sponsor international",
+        "body": "Soutenir la communauté depuis l'étranger. Le contact de cette carte est rédigé en anglais.",
+        "contactTitle": "Contact us in English",
+        "contactBody": "Write to the team in English through this form, or reach the community on WhatsApp.",
+        "formCta": "Open the form in English",
+        "whatsappCta": "Community WhatsApp"
+      }
+    },
+    "email": {
+      "teamSubject": "[Partenaires] {organization}",
+      "teamIntro": "Nouvelle proposition de partenariat",
+      "ackSubject": "Cursor Cameroun — proposition de partenariat reçue",
+      "ackGreeting": "Bonjour {name},",
+      "ackBody": "Nous avons bien reçu la proposition de {organization}.",
+      "ackDelay": "Nous vous répondons sous cinq jours ouvrés.",
+      "ackWhatsapp": "Vous pouvez aussi joindre la communauté sur WhatsApp."
+    },
+    "errors": {
+      "organizationMin": "Le nom de l'organisation doit contenir au moins 2 caractères.",
+      "organizationMax": "Le nom de l'organisation ne peut pas dépasser 120 caractères.",
+      "contactNameMin": "Le nom du contact doit contenir au moins 2 caractères.",
+      "contactNameMax": "Le nom du contact ne peut pas dépasser 80 caractères.",
+      "whatsapp": "Indiquez un numéro WhatsApp international, par exemple +237 6XX XX XX XX.",
+      "whatsappMax": "Le numéro WhatsApp est trop long.",
+      "preference": "Choisissez comment vous préférez être contacté.",
+      "email": "Adresse e-mail invalide.",
+      "emailMax": "L'adresse e-mail ne peut pas dépasser 254 caractères.",
+      "city": "Choisissez une ville.",
+      "countryMin": "Indiquez le pays pour la diaspora.",
+      "countryMax": "Le pays ne peut pas dépasser 80 caractères.",
+      "link": "Indiquez une adresse http ou https, ou laissez le champ vide.",
+      "linkMax": "Le lien ne peut pas dépasser 300 caractères.",
+      "sector": "Choisissez un secteur.",
+      "offersMin": "Cochez au moins une offre.",
+      "offerUnknown": "Cette offre n'est pas reconnue.",
+      "capacity": "Indiquez la capacité en nombre de personnes.",
+      "wifi": "Indiquez le wifi et le débit.",
+      "wifiMax": "La description du wifi est trop longue.",
+      "power": "Indiquez l'électricité de secours.",
+      "av": "Indiquez le projecteur et la sono.",
+      "avMax": "La description du matériel est trop longue.",
+      "availability": "Indiquez les disponibilités.",
+      "availabilityMax": "Les disponibilités sont trop longues.",
+      "detailsMax": "Les précisions ne peuvent pas dépasser 5000 caractères.",
+      "consent": "Cochez la case pour accepter le traitement décrit dans la politique de confidentialité.",
+      "invalid": "Le formulaire est incomplet ou invalide.",
+      "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+      "turnstile": "La vérification anti-spam a échoué. Réessayez.",
+      "unavailable": "L'envoi est temporairement indisponible.",
+      "sendFailed": "La proposition n'a pas pu être envoyée. Réessayez."
+    }
+  },
   "privacy": {
     "title": "Politique de confidentialité",
-    "description": "Qui traite les données du formulaire de contact, dans quel but, combien de temps, et comment en demander la suppression.",
+    "description": "Qui traite les données des formulaires de contact et de partenariat, dans quel but, combien de temps, et comment en demander la suppression.",
     "pendingBanner": "Les mentions « À confirmer » ne sont pas encore validées. Aucun responsable, aucune durée et aucun contact juridique ne sont inventés sur cette page.",
     "pendingLabel": "À confirmer",
-    "intro": "Cette page décrit le traitement des données envoyées par le formulaire de contact du site Cursor Cameroun. Elle est rédigée au regard de la loi n° 2024/017 du 23 décembre 2024 relative à la protection des données à caractère personnel au Cameroun.",
+    "intro": "Cette page décrit le traitement des données envoyées par les formulaires de contact et de partenariat du site Cursor Cameroun. Elle est rédigée au regard de la loi n° 2024/017 du 23 décembre 2024 relative à la protection des données à caractère personnel au Cameroun.",
     "disclaimer": "Ce texte informe les personnes qui écrivent via le formulaire. Ce n'est pas un avis juridique.",
     "lawLink": "Texte officiel (Présidence de la République)",
     "controllerTitle": "Qui traite les données",
@@ -229,7 +396,9 @@
     "rightsTitle": "Demander la suppression",
     "rightsBody": "Vous pouvez demander l'accès aux données issues de votre message, leur rectification ou leur suppression, et revenir sur le consentement donné via le formulaire. La loi n° 2024/017 du 23 décembre 2024 encadre la protection de ces données. Le canal pour adresser une demande n'est pas encore publié.",
     "rightsPending": "Contact pour demander la suppression ou exercer vos droits. À faire confirmer. Aucune adresse juridique n'est indiquée ici en attendant.",
-    "backToContact": "Retour au formulaire de contact"
+    "backToContact": "Retour au formulaire de contact",
+    "partnersTitle": "Formulaire de partenariat",
+    "partnersBody": "Le formulaire Devenir partenaire transmet le nom de l'organisation, le nom de la personne à contacter, le numéro WhatsApp, la préférence de contact, l'adresse e-mail, la ville, le pays lorsque la ville est Diaspora, un lien facultatif, le secteur, les offres proposées, les informations de salle si cette offre est cochée, et un texte de précisions. Le logo n'est pas demandé. Ces données servent à examiner la proposition et à y répondre. Elles sont envoyées par e-mail au destinataire configuré pour le site, via Resend, et ne sont pas copiées dans la base du site. Le responsable du traitement, la durée de conservation et le contact pour la suppression restent les mentions à confirmer de cette page.",
+    "backToPartners": "Retour au formulaire partenaires"
   }
 }
-

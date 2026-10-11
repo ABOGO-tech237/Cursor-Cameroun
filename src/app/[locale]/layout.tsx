@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getMessages, getTimeZone, setRequestLocale } from "next-intl/server";
+import { Footer } from "@/components/Footer";
+import { DocumentLang } from "@/components/DocumentLang";
+import { Navbar } from "@/components/Navbar";
 import { locales, type Locale } from "@/i18n/routing";
+import Providers from "../providers";
 
 function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
@@ -24,6 +28,14 @@ export default async function LocaleLayout({
   }
 
   setRequestLocale(locale);
+  const [messages, timeZone] = await Promise.all([getMessages(), getTimeZone()]);
 
-  return children;
+  return (
+    <Providers locale={locale} messages={messages} timeZone={timeZone}>
+      <DocumentLang locale={locale} />
+      <Navbar />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12">{children}</main>
+      <Footer />
+    </Providers>
+  );
 }

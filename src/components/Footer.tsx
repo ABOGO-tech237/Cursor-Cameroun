@@ -40,6 +40,7 @@ export function Footer() {
               <Link href="/gallery" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.gallery")}</Link>
               <Link href="/roadmap" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.roadmap")}</Link>
               <Link href="/community" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.community")}</Link>
+              <Link href="/partners" className="text-sm text-text-2 hover:text-text transition-colors">{t("nav.partners")}</Link>
             </nav>
           </div>
 

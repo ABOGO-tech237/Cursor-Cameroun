@@ -15,7 +15,7 @@ export type RateLimiter = {
 
 /**
  * Limiteur en mémoire, volontairement simple, réutilisable par route
- * (`/api/send` aujourd'hui, `/api/partners` ensuite).
+ * (`/api/send` et `/api/partners`, chacun avec son seau).
  *
  * Limite en serverless : chaque instance (isolate Vercel, cold start) a sa
  * propre `Map`. Le compteur n'est pas global, il repart à zéro au redémarrage
@@ -73,6 +73,15 @@ export function createMemoryRateLimiter(options: {
  * Seuil de départ, à ajuster si Emmanuel le souhaite.
  */
 export const contactRateLimiter = createMemoryRateLimiter({
+  limit: 5,
+  windowMs: 10 * 60 * 1000,
+});
+
+/**
+ * 5 propositions de partenariat / 10 minutes / IP / instance.
+ * Seau distinct du contact, même seuil de départ.
+ */
+export const partnerRateLimiter = createMemoryRateLimiter({
   limit: 5,
   windowMs: 10 * 60 * 1000,
 });

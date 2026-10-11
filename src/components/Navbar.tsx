@@ -86,6 +86,8 @@ export function Navbar() {
         { href: "/gallery", label: t("nav.gallery") },
         { href: "/roadmap", label: t("nav.roadmap") },
         { href: "/community", label: t("nav.community") },
+        { href: "/partners", label: t("nav.partners") },
+        { href: "/contact", label: t("nav.contact") },
       ];
 
       if (isAdmin) {

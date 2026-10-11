@@ -12,7 +12,14 @@ function readCookie(request: Request, name: string): string | undefined {
   if (!cookie) return undefined;
   for (const part of cookie.split(";")) {
     const [rawKey, ...rest] = part.trim().split("=");
-    if (rawKey === name) return decodeURIComponent(rest.join("="));
+    if (rawKey === name) {
+      try {
+        return decodeURIComponent(rest.join("="));
+      } catch {
+        // Cookie tronqué ou mal échappé : on ignore cette valeur.
+        return undefined;
+      }
+    }
   }
   return undefined;
 }

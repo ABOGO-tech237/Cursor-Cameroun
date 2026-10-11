@@ -1,15 +1,24 @@
 import { Resend } from "resend";
-import type { ContactEmail } from "./contact-email";
+
+/** Message passé à Resend. `replyTo` est facultatif (notification admin, accusé). */
+export type OutboundEmail = {
+  from: string;
+  to: string;
+  replyTo?: string;
+  subject: string;
+  text: string;
+  html: string;
+};
 
 export async function sendResendEmail(
   apiKey: string,
-  email: ContactEmail,
+  email: OutboundEmail,
 ): Promise<{ ok: boolean }> {
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from: email.from,
     to: [email.to],
-    replyTo: email.replyTo,
+    ...(email.replyTo ? { replyTo: email.replyTo } : {}),
     subject: email.subject,
     text: email.text,
     html: email.html,

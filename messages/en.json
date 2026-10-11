@@ -28,7 +28,9 @@
     "themeLight": "Light",
     "language": "Language",
     "menuOpen": "Open menu",
-    "menuClose": "Close menu"
+    "menuClose": "Close menu",
+    "partners": "Partners",
+    "contact": "Contact"
   },
   "home": {
     "heroTitle": "Cursor Cameroon",
@@ -205,12 +207,177 @@
       }
     }
   },
+  "partners": {
+    "title": "Partners",
+    "description": "Venues, visibility, and other support for Cursor Cameroon meetups. No logo is shown without permission.",
+    "introTitle": "Why become a partner",
+    "introLead": "A meetup needs a room, a signal boost, and sometimes a helping hand.",
+    "introBody": "Becoming a partner means opening a venue, telling your students, members, or teams about the community, or offering another kind of support. Each agreement is discussed directly with the team. An organisation's logo is published only after permission, as an SVG or a WebP under 30 KB.",
+    "directoryTitle": "Partners",
+    "directoryEmptyTitle": "The showcase is still empty",
+    "directoryEmptyBody": "No partner is published yet. We do not show placeholder logos: a name appears here only once an agreement is in place, and a logo only when permission is given.",
+    "offersTitle": "Four ways to support",
+    "offersIntro": "You can choose more than one. Say what you can offer in the form.",
+    "cardCta": "Add this offer in the form",
+    "formTitle": "Become a partner",
+    "formIntro": "Describe your organisation and what you can offer. The logo is not part of this form: it is added only after an agreement.",
+    "formSubmit": "Send the proposal",
+    "formSending": "Sending…",
+    "successTitle": "Proposal received",
+    "successBody": "Thank you. The team has your proposal. When delivery succeeds, an acknowledgement is also sent to your email address, in the language of this page.",
+    "successWhatsappLink": "Open WhatsApp",
+    "sendAnother": "Send another proposal",
+    "errorBody": "Something went wrong while sending. Please try again.",
+    "whatsappHint": "+237 is filled in already. Change it if the number is not Cameroonian.",
+    "countryHint": "Country of residence, for the diaspora.",
+    "venueHint": "Venue details",
+    "consentLead": "I agree that this information may be used to review this proposal and reply to it.",
+    "privacyLink": "Privacy policy",
+    "visit": "Visit the site",
+    "placeholders": {
+      "city": "Choose a city",
+      "sector": "Choose a sector",
+      "power": "Choose"
+    },
+    "fields": {
+      "organization": "Organisation",
+      "contactName": "Contact name",
+      "whatsapp": "WhatsApp",
+      "preference": "Contact preference",
+      "email": "Email",
+      "city": "City",
+      "country": "Country",
+      "link": "Facebook page, LinkedIn, or website (optional)",
+      "sector": "Sector",
+      "offers": "Offers",
+      "capacity": "Capacity (people)",
+      "wifi": "Wi-Fi and speed",
+      "power": "Backup power (generator or UPS)",
+      "av": "Projector and sound",
+      "availability": "Availability",
+      "details": "Details (optional)",
+      "locale": "Form language"
+    },
+    "preferences": {
+      "whatsapp": "WhatsApp",
+      "call": "Call",
+      "email": "Email"
+    },
+    "cities": {
+      "yaounde": "Yaoundé",
+      "douala": "Douala",
+      "bafoussam": "Bafoussam",
+      "buea": "Buea",
+      "bamenda": "Bamenda",
+      "limbe": "Limbé",
+      "kribi": "Kribi",
+      "garoua": "Garoua",
+      "maroua": "Maroua",
+      "ngaoundere": "Ngaoundéré",
+      "bertoua": "Bertoua",
+      "ebolowa": "Ebolowa",
+      "other": "Other",
+      "diaspora": "Diaspora"
+    },
+    "sectors": {
+      "school": "School or university",
+      "coworking": "Coworking or hub",
+      "tech": "Tech company",
+      "telecom": "Telecoms",
+      "finance": "Bank or fintech",
+      "media": "Media or influencer",
+      "ngo": "NGO or institution",
+      "startup": "Startup",
+      "international": "International sponsor",
+      "other": "Other"
+    },
+    "offerNames": {
+      "venue": "Venue",
+      "visibility": "Visibility",
+      "catering": "Catering",
+      "equipment": "Equipment",
+      "mentoring": "Mentoring",
+      "funding": "Funding",
+      "other": "Other"
+    },
+    "powerOptions": {
+      "generator": "Generator",
+      "ups": "UPS",
+      "both": "Generator and UPS",
+      "none": "None"
+    },
+    "offers": {
+      "venue": {
+        "title": "Venue",
+        "body": "Host a meetup, a Cursor café, or a night of code. The form then asks for capacity, Wi-Fi and speed, backup power, projector, sound, and availability."
+      },
+      "visibility": {
+        "title": "Visibility",
+        "body": "Relay the announcement to your students, members, or customers: a school, a media outlet, a network, or a company."
+      },
+      "support": {
+        "title": "Other support",
+        "body": "Catering, equipment, mentoring, or funding. Describe what is possible in the details."
+      },
+      "international": {
+        "title": "International sponsor",
+        "body": "Support the community from abroad. The contact on this card is written in English.",
+        "contactTitle": "Contact us in English",
+        "contactBody": "Write to the team in English through this form, or reach the community on WhatsApp.",
+        "formCta": "Open the form in English",
+        "whatsappCta": "Community WhatsApp"
+      }
+    },
+    "email": {
+      "teamSubject": "[Partners] {organization}",
+      "teamIntro": "New partnership proposal",
+      "ackSubject": "Cursor Cameroun — partnership proposal received",
+      "ackGreeting": "Hello {name},",
+      "ackBody": "We have received the proposal from {organization}.",
+      "ackDelay": "We reply within five business days.",
+      "ackWhatsapp": "You can also reach the community on WhatsApp."
+    },
+    "errors": {
+      "organizationMin": "Organisation name must be at least 2 characters.",
+      "organizationMax": "Organisation name cannot exceed 120 characters.",
+      "contactNameMin": "Contact name must be at least 2 characters.",
+      "contactNameMax": "Contact name cannot exceed 80 characters.",
+      "whatsapp": "Enter an international WhatsApp number, for example +237 6XX XX XX XX.",
+      "whatsappMax": "The WhatsApp number is too long.",
+      "preference": "Choose how you prefer to be contacted.",
+      "email": "Invalid email address.",
+      "emailMax": "Email address cannot exceed 254 characters.",
+      "city": "Choose a city.",
+      "countryMin": "Enter the country for the diaspora.",
+      "countryMax": "Country cannot exceed 80 characters.",
+      "link": "Enter an http or https address, or leave the field empty.",
+      "linkMax": "The link cannot exceed 300 characters.",
+      "sector": "Choose a sector.",
+      "offersMin": "Tick at least one offer.",
+      "offerUnknown": "This offer is not recognised.",
+      "capacity": "Enter the capacity as a number of people.",
+      "wifi": "Describe the Wi-Fi and its speed.",
+      "wifiMax": "The Wi-Fi description is too long.",
+      "power": "Describe the backup power.",
+      "av": "Describe the projector and sound.",
+      "avMax": "The equipment description is too long.",
+      "availability": "Describe the availability.",
+      "availabilityMax": "The availability is too long.",
+      "detailsMax": "Details cannot exceed 5000 characters.",
+      "consent": "Tick the box to accept the processing described in the privacy policy.",
+      "invalid": "The form is incomplete or invalid.",
+      "rateLimited": "Too many attempts. Please try again in a few minutes.",
+      "turnstile": "The anti-spam check failed. Please try again.",
+      "unavailable": "Sending is temporarily unavailable.",
+      "sendFailed": "The proposal could not be sent. Please try again."
+    }
+  },
   "privacy": {
     "title": "Privacy policy",
-    "description": "Who processes contact-form data, for what purpose, for how long, and how to ask for deletion.",
+    "description": "Who processes contact and partnership form data, for what purpose, for how long, and how to ask for deletion.",
     "pendingBanner": "Items marked “To confirm” are not validated yet. This page does not invent a controller, a retention period, or a legal contact.",
     "pendingLabel": "To confirm",
-    "intro": "This page describes how data sent through the Cursor Cameroun contact form is processed. It is written with Cameroonian Law No. 2024/017 of 23 December 2024 relating to personal data protection in mind.",
+    "intro": "This page describes how data sent through the Cursor Cameroun contact and partnership forms is processed. It is written with Cameroonian Law No. 2024/017 of 23 December 2024 relating to personal data protection in mind.",
     "disclaimer": "This text informs people who write through the form. It is not legal advice.",
     "lawLink": "Official text (Presidency of the Republic)",
     "controllerTitle": "Who processes the data",
@@ -229,7 +396,9 @@
     "rightsTitle": "Asking for deletion",
     "rightsBody": "You can ask for access to the data from your message, for correction or deletion, and you can withdraw the consent given through the form. Law No. 2024/017 of 23 December 2024 frames the protection of this data. The channel for sending a request is not published yet.",
     "rightsPending": "Contact for a deletion request or to exercise your rights. To be confirmed. No legal address is listed here in the meantime.",
-    "backToContact": "Back to the contact form"
+    "backToContact": "Back to the contact form",
+    "partnersTitle": "Partnership form",
+    "partnersBody": "The Become a partner form sends the organisation name, the contact person's name, the WhatsApp number, the contact preference, the email address, the city, the country when the city is Diaspora, an optional link, the sector, the offers, the venue details if that offer is ticked, and a free-text note. It does not ask for a logo. This data is used to review the proposal and reply to it. It is emailed to the recipient configured for the site, through Resend, and it is not copied into the site database. The controller, the retention period, and the contact for deletion remain the items marked to confirm on this page.",
+    "backToPartners": "Back to the partners form"
   }
 }
-

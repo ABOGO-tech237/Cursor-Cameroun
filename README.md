@@ -58,7 +58,7 @@ Les tokens CSS sont définis dans [src/app/globals.css](src/app/globals.css).
 
 ## Fonctionnalités
 
-- [x] Pages principales : Home, Events, Gallery, Roadmap, Community
+- [x] Pages principales : Home, Events, Gallery, Roadmap, Community, Partners
 - [x] Navigation responsive avec CTA, sélecteur de langue et de thème
 - [x] Internationalisation FR / EN (`next-intl`, messages centralisés)
 - [x] Galerie avec filtre événement/date, lightbox et lazy-loading
@@ -124,15 +124,23 @@ Copier `.env.example` en `.env`. Le fichier `.env` ne se commite pas. `.env.exam
 | `ADMIN_PASSWORD` | Mot de passe du tableau de bord. Sert aussi de repli si `AUTH_SECRET` est vide. |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Clé site Cloudflare Turnstile (widget **Invisible**). |
 | `TURNSTILE_SECRET_KEY` | Secret serveur Turnstile. La vérification n'est active que si **les deux** clés sont définies. Une seule des deux est une erreur de configuration (`503`). |
-| `DATABASE_URL` | Postgres des événements. Le formulaire de contact ne s'en sert pas, mais le client est importé au démarrage : sans cette variable, `next build` s'arrête. |
+| `DATABASE_URL` | Postgres des événements. Les formulaires ne s'en servent pas, mais le client est importé au démarrage : sans cette variable, `next build` s'arrête. |
+| `POSTGRES_URL` | Alias poolé de la base, posé par l'intégration Vercel / Neon. Utilisé si `DATABASE_URL` est vide (`src/db/index.ts`). |
+| `POSTGRES_URL_NON_POOLING` | Alias de la connexion directe (hors pooler). Équivalent de `DATABASE_URL_UNPOOLED`. |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Cloud name Cloudinary pour l'upload d'images d'événements dans l'admin. L'upload est ignoré si la variable est vide. |
+| `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` | Upload preset Cloudinary (non signé). Doit être défini avec le cloud name. Aucun secret ici : la valeur est exposée au navigateur. |
 
 ### Formulaire de contact
 
-`POST /api/send` valide les champs avec le schéma Zod partagé (`src/lib/schemas/contact.ts`), échappe le HTML du mail, et applique une garde réutilisable (`src/lib/security/form-guard.ts`) : honeypot, limite de débit, Turnstile.
+`POST /api/send` et `POST /api/partners` valident les champs avec un schéma Zod partagé (`src/lib/schemas/contact.ts`, `src/lib/schemas/partner.ts`), échappent le HTML du mail, et appliquent une garde réutilisable (`src/lib/security/form-guard.ts`) : honeypot, limite de débit, Turnstile.
 
-La limite est de **5 envois / 10 minutes / adresse IP / instance**, en mémoire. En serverless (Vercel), chaque instance a son propre compteur : la limite repart à zéro au cold start et n'est pas globale. Le proxy (`src/proxy.ts`) exclut `/api` et ne porte pas ce compteur. Un store partagé (Postgres) serait nécessaire pour une limite ferme entre instances.
+La limite est de **5 envois / 10 minutes / adresse IP / instance**, en mémoire, avec un seau distinct pour le contact et pour les partenaires. En serverless (Vercel), chaque instance a son propre compteur : la limite repart à zéro au cold start et n'est pas globale. Le proxy (`src/proxy.ts`) exclut `/api` et ne porte pas ce compteur. Un store partagé (Postgres) serait nécessaire pour une limite ferme entre instances.
 
-Le widget Turnstile doit être créé en mode Invisible dans Cloudflare. La page `/privacy` renvoie vers l'addendum Turnstile, exigé pour ce mode. Elle contient des mentions **À confirmer** (responsable du traitement, durée de conservation, contact pour la suppression) à valider avant mise en production.
+Sur Vercel (`process.env.VERCEL`), la clé de débit est le premier saut de `x-forwarded-for`, en-tête écrasé par la plateforme. Hors Vercel, cet en-tête est ignoré : un client peut le forger. On retombe alors sur `x-real-ip`, puis sur un seau `unknown`.
+
+Le formulaire partenaires envoie un message à `CONTACT_EMAIL`, puis un accusé au partenaire dans la langue de la page (délai de réponse et lien WhatsApp), seulement si l'envoi à l'équipe a réussi. Rien n'est écrit en base. En développement, sans `RESEND_API_KEY`, l'écran de succès s'affiche mais aucun e-mail ne part.
+
+Le widget Turnstile doit être créé en mode Invisible dans Cloudflare. La page `/privacy` renvoie vers l'addendum Turnstile, exigé pour ce mode. Elle décrit aussi le formulaire partenaires. Elle contient des mentions **À confirmer** (responsable du traitement, durée de conservation, contact pour la suppression) à valider avant mise en production. Ces mentions ne sont pas remplies dans le dépôt.
 
 ---
 
