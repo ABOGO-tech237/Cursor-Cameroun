@@ -86,6 +86,21 @@ export function Footer() {
             <Link href="/login" className="opacity-50 hover:opacity-100 transition-opacity">{t("footer.admin")}</Link>
           </div>
         </div>
+
+        <p className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-text-2 md:justify-start">
+          <span className="spacexai-mark">
+            {/* SVG officiel servi tel quel : hauteur seule, aucune optimisation. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/spacexai-symbol-white.svg"
+              alt={t("footer.spacexaiAlt")}
+              height={16}
+              decoding="async"
+              className="spacexai-symbol"
+            />
+          </span>
+          <span>{t("footer.spacexaiCredit")}</span>
+        </p>
       </div>
     </footer>
   );

@@ -71,6 +71,30 @@ input[type="checkbox"] {
 :root.dark .brand-logo-light { display: none; }
 :root.dark .brand-logo-dark  { display: inline-flex; }
 
+/* Symbole SpaceXAI blanc officiel. Hauteur seule (16px), ratio du fichier conservé.
+   Fond noir hors thème sombre pour le contraste, sans filtre ni recoloration. */
+.spacexai-mark {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  line-height: 0;
+  background-color: #000000;
+}
+
+:root.dark .spacexai-mark {
+  background-color: transparent;
+}
+
+.spacexai-symbol {
+  display: block;
+  height: 16px;
+  width: auto;
+  max-width: none;
+  aspect-ratio: 834 / 318;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
